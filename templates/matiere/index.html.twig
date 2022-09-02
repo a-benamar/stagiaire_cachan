@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Matiere{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <h3 class=" text-center my-4">Liste Matières</h3>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+                  {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-primary" a href="{{ path('app_matiere_new') }}">+ Matière</a>
+                  {% endif %}
+        </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID Matière</th>
+                <th>Nom Matière</th>
+                  {% if is_granted('ROLE_ADMIN') %}
+                <th>actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for matiere in matieres %}
+            <tr>
+                <td>{{ matiere.idmatiere }}</td>
+                <td>{{ matiere.nommatiere }}</td>
+                {% if is_granted('ROLE_ADMIN') %}
+                <td>
+                    <a class="btn btn-outline-primary" href="{{ path('app_matiere_show', {'idmatiere': matiere.idmatiere}) }}"><i class="fa-solid fa-eye"></i></a>
+                    <a class="btn btn-outline-primary" href="{{ path('app_matiere_edit', {'idmatiere': matiere.idmatiere}) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                </td>
+                {% endif %}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

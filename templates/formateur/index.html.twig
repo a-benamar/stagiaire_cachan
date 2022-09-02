@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formateur{% endblock %}
+
+{% block body %}
+<div class="container text-center">
+    <h3 class="my-4">Liste de Formateurs</h3>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+                     {% if is_granted('ROLE_ADMIN') %}
+    <a class="btn btn-primary" href="{{ path('app_formateur_new') }}">+ Formateur</a>
+                     {% endif %}
+    </div>
+
+    <table class="table table-hover text-start">
+        <thead>
+            <tr>
+                <th>ID Formateur</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>E-mail</th>
+                 {% if is_granted('ROLE_ADMIN') %}
+                <th>actions</th>
+                 {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for formateur in formateurs %}
+            <tr>
+                <td>{{ formateur.idformateur }}</td>
+                <td>{{ formateur.prenom }}</td>
+                <td>{{ formateur.nom }}</td>
+                <td>{{ formateur.email }}</td>
+                 {% if is_granted('ROLE_ADMIN') %}
+                <td>
+                    <a class="btn btn-outline-primary"  href="{{ path('app_formateur_show', {'idformateur': formateur.idformateur}) }}"><i class="fa-solid fa-eye"></i></a>
+                    <a class="btn btn-outline-primary"  href="{{ path('app_formateur_edit', {'idformateur': formateur.idformateur}) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                </td>
+                 {% endif %}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

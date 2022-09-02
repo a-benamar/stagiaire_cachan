@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+<div class="container text-center">
+    <h3 class="my-4">Liste des utilisateurs</h3>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+    <a class="btn btn-primary" href="{{ path('app_register') }}">+ Utilisateur</a>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    {% for role in user.roles %}
+                      {% if role == "ROLE_ADMIN" %}
+                      Administrateur
+                      
+                      {% elseif role == "ROLE_USER" %}
+                      Utilisateur
+
+                      {% endif %}
+                      
+                {% endfor %}
+                </td>
+                  <td>
+                    <a class="btn btn-outline-primary"  href="{{ path('app_user_show', {'id': user.id}) }}"><i class="fa-solid fa-eye"></i></a>
+                    <a class="btn btn-outline-primary"  href="{{ path('app_user_edit', {'id': user.id}) }}"><i class="fa-solid fa-pen-to-square"></i</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    </div>
+{% endblock %}

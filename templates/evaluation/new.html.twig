@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Evaluation{% endblock %}
+
+{% block body %}
+<div class="container">
+
+
+    <h3 class="my-4">Create new Evaluation</h3>
+
+    <div class="">
+
+    {{ include('evaluation/_form.html.twig') }}
+
+    <a class="btn btn-primary" href="{{ path('app_evaluation_index') }}">back to list</a>
+</div>
+</div>
+{% endblock %}
+
+

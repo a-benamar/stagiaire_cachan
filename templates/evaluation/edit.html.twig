@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Evaluation{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    <h3 class="my-4">Edit Evaluation</h3>
+
+    <div class="my-4">
+    {{ include('evaluation/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a class="btn btn-primary" href="{{ path('app_evaluation_index') }}">Retour</a>
+
+    {{ include('evaluation/_delete_form.html.twig') }}
+</div>
+</div>
+{% endblock %}
+

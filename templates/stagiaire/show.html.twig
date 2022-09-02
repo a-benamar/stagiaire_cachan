@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stagiaire{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h3 class="my-4">Profil Stagiaire</h3>
+
+    <table class="table table-hover w-75">
+        <tbody>
+            <tr>
+                <th>ID Stagiaire</th>
+                <td>{{ stagiaire.idstagiaire }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ stagiaire.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ stagiaire.nom }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ stagiaire.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+<div class="d-flex m-3 ">
+    <a class="btn btn-primary" href="{{ path('app_stagiaire_index') }}">Retour</a>
+
+    <a class="btn btn-success" href="{{ path('app_stagiaire_edit', {'idstagiaire': stagiaire.idstagiaire}) }}">Modifie</a>
+
+    {{ include('stagiaire/_delete_form.html.twig') }}
+    </div>
+</div>
+{% endblock %}
