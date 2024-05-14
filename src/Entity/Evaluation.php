@@ -36,23 +36,21 @@ class Evaluation
     private $dateevaluation;
 
     /**
-     * @var \Matiere
+     * @var Matiere|null
      *
-     * @ORM\ManyToOne(targetEntity=Matiere::class,inversedBy="evaluations")
-     * @ORM\JoinColumns({
-     * @ORM\JoinColumn(nullable)
+     * @ORM\ManyToOne(targetEntity=Matiere::class)
+     * @ORM\JoinColumn(name="idMatiere", referencedColumnName="idMatiere", nullable=true)
      */
     private $idmatiere;
 
     /**
-     * @var \Stagiaire
+     * @var Stagiaire|null
      *
-     * @ORM\ManyToOne(targetEntity=Stagiaire::class,inversedBy="evaluations")
-     * @ORM\JoinColumns({
-     * @ORM\JoinColumn(nullable)
+     * @ORM\ManyToOne(targetEntity=Stagiaire::class)
+     * @ORM\JoinColumn(name="idStagiaire", referencedColumnName="idStagiaire", nullable=true)
      */
     private $idstagiaire;
-    
+
 
     public function getIdevaluation(): ?int
     {
